@@ -1,4 +1,6 @@
-apply plugin: 'com.github.dcendents.android-maven'
+plugins {
+    id "com.github.dcendents.android-maven" version "1.5"
+}
 
 install {
     repositories.mavenInstaller {
