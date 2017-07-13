@@ -1,0 +1,49 @@
+apply plugin: 'maven'
+
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging artifact_packaging
+                name artifact_name
+                url url_site
+
+                licenses {
+                    license {
+                        name license_name
+                        url license_url
+                    }
+                }
+
+                developers {
+                    developer {
+                        id developer_id
+                        name developer_name
+                        email developer_email
+                    }
+                }
+
+                scm {
+                    connection url_git
+                    developerConnection url_git
+                    url url_site
+                }
+            }
+        }
+    }
+}
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
