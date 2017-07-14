@@ -33,7 +33,7 @@ install {
     }
 }
 
-task sourcesJar(type: Jar) {
+task jar {
     from sourceSets.main.allSource
     manifest {
         attributes 'Main-Class': 'com.guerinet.stringparser.StringParser'
@@ -50,5 +50,5 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 
 artifacts {
     archives javadocJar
-    archives sourcesJar
+    archives jar
 }
