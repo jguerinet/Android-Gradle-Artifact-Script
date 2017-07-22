@@ -1,7 +1,7 @@
 import java.util.regex.Pattern
 
 // Taken from https://stackoverflow.com/questions/17448565/how-to-autoincrement-versioncode-in-android-gradle
-task('increaseVersionCode') << {
+task('incrementVersionCode') << {
     def buildFile = file("build.gradle")
     def pattern = Pattern.compile("versionCode(\\s+\\d+)")
     def buildText = buildFile.getText()
