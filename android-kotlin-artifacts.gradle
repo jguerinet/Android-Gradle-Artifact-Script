@@ -1,5 +1,4 @@
 apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'org.jetbrains.dokka'
 
 install {
     repositories.mavenInstaller {
