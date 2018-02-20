@@ -1,0 +1,66 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.dokka:dokka-android-gradle-plugin:0.9.15"
+    }
+}
+
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'org.jetbrains.dokka'
+
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging artifact_packaging
+                name artifact_name
+                url url_site
+
+                licenses {
+                    license {
+                        name license_name
+                        url license_url
+                    }
+                }
+
+                developers {
+                    developer {
+                        id developer_id
+                        name developer_name
+                        email developer_email
+                    }
+                }
+
+                scm {
+                    connection url_git
+                    developerConnection url_git
+                    url url_site
+                }
+            }
+        }
+    }
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task docs(type: org.jetbrains.dokka.gradle.DokkaAndroidTask) {
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    outputFormat = 'javadoc'
+    outputDirectory = "$buildDir/javadoc"
+}
+
+task docsJar(type: Jar, dependsOn: docs) {
+    classifier = 'javadoc'
+    from "$buildDir/javadoc"
+}
+
+artifacts {
+    archives sourcesJar
+    archives docsJar
+}
