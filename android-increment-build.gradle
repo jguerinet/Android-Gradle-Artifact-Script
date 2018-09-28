@@ -3,7 +3,6 @@ import java.util.regex.Pattern
 // Increments a build number. This assumes that there is a field named versionBuild present
 task('incrementBuildNumber') {
     doLast {
-        def build = versionBuild + 1
         def text = "def versionBuild = "
 
         // Define the pattern to find the build number
@@ -13,6 +12,9 @@ task('incrementBuildNumber') {
         def buildFile = file("build.gradle")
         def matcher = pattern.matcher(buildFile.getText())
         matcher.find()
+
+        // Find the original build number, add 1 to it 
+        def build = matcher.group().replaceAll(text, "").toInteger() + 1
 
         // Rewrite the new number
         buildFile.write(matcher.replaceAll(text + build))
