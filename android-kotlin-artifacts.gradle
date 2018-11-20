@@ -1,5 +1,5 @@
 apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'org.jetbrains.dokka-android'
+// apply plugin: 'org.jetbrains.dokka-android'
 
 install {
     repositories.mavenInstaller {
@@ -39,16 +39,16 @@ task sourcesJar(type: Jar) {
     classifier = 'sources'
 }
 
-task docs(type: org.jetbrains.dokka.gradle.DokkaAndroidTask) {
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-    outputFormat = 'javadoc'
-    outputDirectory = "$buildDir/javadoc"
-}
+// task docs(type: org.jetbrains.dokka.gradle.DokkaAndroidTask) {
+//     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+//     outputFormat = 'javadoc'
+//     outputDirectory = "$buildDir/javadoc"
+// }
 
-task docsJar(type: Jar, dependsOn: docs) {
-    classifier = 'javadoc'
-    from "$buildDir/javadoc"
-}
+// task docsJar(type: Jar, dependsOn: docs) {
+//     classifier = 'javadoc'
+//     from "$buildDir/javadoc"
+// }
 
 artifacts {
     archives sourcesJar
