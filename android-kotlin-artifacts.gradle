@@ -52,5 +52,5 @@ task sourcesJar(type: Jar) {
 
 artifacts {
     archives sourcesJar
-    archives docsJar
+    // archives docsJar
 }
