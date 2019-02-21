@@ -1,0 +1,26 @@
+apply plugin: "com.diffplug.gradle.spotless"
+
+spotless {
+    format 'misc', {
+        target '**/*.gradle', '**/.gitignore'
+
+        trimTrailingWhitespace()
+        endWithNewline()
+    }
+
+    format 'markdown', {
+        target '**/*.md'
+
+        trimTrailingWhitespace()
+        endWithNewline()
+        prettier().config(['parser': 'markdown', 'tabWidth': 4])
+    }
+
+    kotlin {
+        target "**/*.kt"
+
+        ktlint()
+        trimTrailingWhitespace()
+        endWithNewline()
+    }
+}
